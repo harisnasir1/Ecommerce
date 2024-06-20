@@ -234,7 +234,7 @@ module.exports.edit_categories=async(req,res,next)=>{
  try{
     
     const {Catergoy_name,P,id}=req.body;
-    ////console.log(Catergoy_name, "  ",P,"  ",id)
+    console.log(Catergoy_name, "  ",P,"  ",id)
     if(!P)
         {
             
@@ -252,6 +252,26 @@ module.exports.edit_categories=async(req,res,next)=>{
                     runValidators: true // Ensure the update adheres to the schema validation
                 }
             );
+            ////console.log("data from mongo :" ,result);
+            return res.json({status:true,result});
+        }
+    else if(P=="no parent Category")
+        {
+           
+            const newData={
+                Catergoy_name:Catergoy_name,
+                parent:null
+            }
+           //////console.log(r[0])
+            const result=await Categories.findByIdAndUpdate(
+                id,
+                {
+                    $set: newData
+                },
+                {
+                    new: true, // Return the updated document
+                    runValidators: true // Ensure the update adheres to the schema validation
+                });
             ////console.log("data from mongo :" ,result);
             return res.json({status:true,result});
         }

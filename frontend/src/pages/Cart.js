@@ -57,7 +57,7 @@ const Cart = () => {
       { 
         const price = products?.find(p => p._id === productId)?.product_price||0  ;
        
-        totall+=parseInt(price);
+        totall+=parseFloat(price);
         
 
       }
@@ -136,10 +136,10 @@ const Cart = () => {
 
       }
   return (
-    <div className=' bg-custom-white h-[100vh]'>
+    <div className=' bg-custom-white h-[100%] lg:h-[100vh] overflow-hidden'>
    <Header/>
 
-   <div className=' grid grid-cols-cart_main_grid gap-16 ml-12 mr-12 mt-10'>
+   <div className=' grid grid-row-2 lg:grid-cols-cart_main_grid gap-16 ml-5 mr-5 lg:ml-12 lg:mr-12 mt-10'>
     <div className='bg-white  bg-transparent rounded-lg shadow-xl border-cart-boxes  font-bold h-[70vh] overflow-auto     '>
      <div  className=' flex justify-start ml-[10vw] m-3 text-3xl capitalize '>cart</div>
   <div className='  w-[90%] ml-7  '>
@@ -147,9 +147,9 @@ const Cart = () => {
   { !!products?.length>0 &&(
      <table className='w-[100%] text-left  '>
        
-            <tr className=' text-xl font-bold '>
+            <tr className=' text-base md:text-xl font-bold '>
                 <th className=' pb-6  text-center'>Product  </th>
-                <th className=' pb-6'>property    </th>
+                <th className=' pb-6 pr-3 md:pr-0'>property    </th>
                 <th className=' pb-6 '>Quantity </th>
                 <th className=' pb-6'>price    </th>
                 
@@ -161,7 +161,7 @@ const Cart = () => {
 
         <tr  className=' text-base  ' >
             <td className=' pb-7  pt-7 flex flex-col justify-center align-middle items-center border-t gap-4'>
-                <div className=' h-[140px] w-[180px]  bg-cart-img-back flex justify-center rounded-lg border-cart-img-box border-cart-img-color'>
+                <div className='h-[80px] md:h-[140px] w-[100px] md:w-[180px]  bg-cart-img-back flex justify-center rounded-lg border-cart-img-box border-cart-img-color'>
                 <img className=' max-h-[100%] max-w-[100%] bg-cover' src={product.Images[0]}/>
 
                 </div>

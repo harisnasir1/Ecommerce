@@ -11,7 +11,7 @@ const Home = () => {
 
 
   return (
-    <div className=' bg-custom-white'>
+    <div className=' bg-custom-white overflow-hidden'>
     <Header/>
     <Featured/>
     <LatesetProduct/>

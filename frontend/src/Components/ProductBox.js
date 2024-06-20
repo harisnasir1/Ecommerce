@@ -5,22 +5,22 @@ const ProductBox = ({Product_name,product_price,Product_descripton ,Images,_id})
   const {addproducts}= useContext(cartcontext);
 
   return (
-    <div className=' text-center flex flex-col gap-1'> 
+    <div className='  text-center flex flex-col gap-1'> 
         
-        <Link to={`/Detail/${_id}`} className='bg-white  bg-transparent  rounded-lg shadow-xl  h-[240px] w-full text-xl   flex items-center  align-middle justify-center bg-contain '>
+        <Link to={`/Detail/${_id}`} className='bg-white  bg-transparent  rounded-lg shadow-xl  h-[240px] w-full text-xl   flex justify-center items-center'>
         <img className='w-full h-full object-contain p-2 ' src={Images[0]}/>
           
         </Link>
-        <Link to={`/Detail/${_id}`}>{Product_name}</Link>
-        <div className=' flex gap-3 text-lg m-0 font-sans font-none   justify-center  text-center align-middle'>
+        <Link to={`/Detail/${_id}`} className=' = h-[6vh]'>{Product_name}</Link>
+        <div className=' flex gap-3  h-[8vh] text-lg m-0 font-sans font-none   justify-center  text-center align-middle'>
           
        
-        <div className=' flex  w-[80%] justify-around mt-2'>
+        <div className=' flex   w-[100%] justify-around '>
           <div className=' '>
             <h2 className='text-2xl align-middle items-center font-bold p-2'> $ {product_price}</h2>
            </div>
         
-          <button className=' bg-custom-gray w-fit p-2 text-center  rounded-lg text-lg text-white   cursor-pointer flex justify-center '
+          <button className=' bg-custom-gray w-[110px] h-[60px] p-0 text-center  rounded-lg text-base text-white   cursor-pointer flex justify-center align-middle items-center '
           onClick={(e)=>{
             e.preventDefault();
             addproducts(_id);
@@ -39,7 +39,7 @@ const ProductBox = ({Product_name,product_price,Product_descripton ,Images,_id})
 
 
         </div>
-        </div>
+     </div>
   )
 }
 

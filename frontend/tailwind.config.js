@@ -15,6 +15,7 @@ module.exports = {
       gridTemplateColumns:{
         'cart_main_grid':'1.4fr .6fr',
         'allproduct':'.1fr 1fr',
+        'allproduct_re':'0fr 1fr',
         'detail_main':'0.9fr 1fr',
         'category':'0.5fr 1fr'
       },
@@ -33,5 +34,17 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    function({ addUtilities }) {
+      addUtilities({
+        '.no-scrollbar': {
+          '-ms-overflow-style': 'none',  /* Internet Explorer 10+ */
+          'scrollbar-width': 'none'  /* Firefox */
+        },
+        '.no-scrollbar::-webkit-scrollbar': {
+          'display': 'none'  /* Safari and Chrome */
+        }
+      }, ['responsive'])
+    }
+  ],
 }

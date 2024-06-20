@@ -38,7 +38,7 @@ const Categorise = () => {
     
     const update=async(event)=>{
       event.preventDefault();
-      console.log("k",updateid);
+      console.log("k",ParentCat);
       await  axios.post(edit_categories,{
         Catergoy_name:Catname,
         P:ParentCat,
@@ -157,7 +157,7 @@ border-2 border-gray  outline-none' value={Catname} onChange={(e)=>Setcatname(e.
 
  Allcat.map((cat, index) => (
 <option key={index} className="cursor-pointer" value={cat.Catergoy_name} >
- {!!cat.parent?"":   cat.Catergoy_name}
+ { cat.Catergoy_name}
 </option>
 ))
 
