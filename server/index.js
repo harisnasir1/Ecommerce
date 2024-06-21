@@ -33,7 +33,7 @@ app.use("/api/Cart",cartRoutes);
 
 //4242 4242 4242 4242
 
-const endpointSecret = "whsec_9230fa03395fe8aeb4a81429980de8b541422e2d16d4d5c945e1ad680858ad0d";
+const endpointSecret = process.env.EndpointSecret;
 
 app.post('/webhook', express.raw({ type: 'application/json' }), async(request, response) => {
  // console.log("webhook");
