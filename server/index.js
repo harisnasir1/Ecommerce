@@ -7,8 +7,11 @@ const dotenv=require("dotenv")
 const Orders=require("./Models/Orders")
 const app = express();
 dotenv.config();
-
-app.use(cors());
+const corsOptions = {
+  origin: '*', // Replace with your actual frontend domain
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+app.use(cors(corsOptions));
 
 const userRoutes=require("./routes/userRoutes");
 const ProductRoutes=require("./routes/ProductRoutes");
