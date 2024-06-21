@@ -6,7 +6,6 @@ const stripe = require('stripe')(process.env.stipe_sk);
 const dotenv=require("dotenv")
 const Orders=require("./Models/Orders")
 const app = express();
-const port = 8000;
 dotenv.config();
 
 app.use(cors());
@@ -74,6 +73,9 @@ app.post('/webhook', express.raw({ type: 'application/json' }), async(request, r
   response.send();
 });
 
+app.get('/', (req, res) => {
+  res.send('Server is up and running!');
+});
 // Replace with your MongoDB URI
 
 mongoose.connect(process.env.MONGO_URL)
