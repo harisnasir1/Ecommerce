@@ -1,5 +1,5 @@
 
-export const host="http://localhost:5000";
+export const host="https://ecommerce-inky-five.vercel.app/";
 export const SignupRoute=`${host}/api/auth/adminSignup`;
 export const LoginRoute =`${host}/api/auth/adminLogin`;
 //products
