@@ -73,15 +73,13 @@ app.post('/webhook', express.raw({ type: 'application/json' }), async(request, r
   response.send();
 });
 
-app.get('/', (req, res) => {
-  res.send('Server is up and running!');
-});
+
 // Replace with your MongoDB URI
 
 mongoose.connect(process.env.MONGO_URL)
   .then(() => {console.log('MongoDB connected')
   app.listen(5000, function () {
-    console.log(`Example app listening on port ${process.env.PORT}!`);
+    res.send(`Example app listening on port ${process.env.PORT}!`);
   });
   })
   .catch(err => console.log('MongoDB connection error:', err));
