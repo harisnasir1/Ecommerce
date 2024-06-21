@@ -79,7 +79,9 @@ app.post('/webhook', express.raw({ type: 'application/json' }), async(request, r
 mongoose.connect(process.env.MONGO_URL)
   .then(() => {console.log('MongoDB connected')
   app.listen(5000, function () {
-    res.send(`Example app listening on port ${process.env.PORT}!`);
+    app.get('/', (req, res) => {
+      res.send('Server is up and running!');
+    });
   });
   })
   .catch(err => console.log('MongoDB connection error:', err));
