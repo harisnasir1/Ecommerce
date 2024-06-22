@@ -118,7 +118,7 @@ const Cart = () => {
                   const params = new URLSearchParams(location.search);
                   const isSuccess = params.get('success');
                   emptycart();
-                  navigate("/Msg");
+                 
                   if (isSuccess === 'true' ) {
                     
                   toast('Order is placed');
