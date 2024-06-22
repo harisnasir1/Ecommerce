@@ -91,7 +91,7 @@ mongoose.connect(process.env.MONGO_URL)
   });
 
   // Schedule the self-pinging task
-  cron.schedule('*/20 * * * *', () => {
+  cron.schedule(`*/${process.env.Spoon} * * * *`, () => {
     axios.get(`${process.env.SelfUrl}/keep-alive`)
       .then(response => {
         console.log('Ping successful:', response.data);

@@ -114,18 +114,18 @@ const Cart = () => {
                 if (error) {
                   console.error('Stripe error:', error);
                 }
-                else{
-                  const params = new URLSearchParams(location.search);
-                  const isSuccess = params.get('success');
-                  emptycart();
-                 
-                  if (isSuccess === 'true' ) {
-                    
-                  toast('Order is placed');
-                   
-
-                }
-              }
+                //else{
+                //  const params = new URLSearchParams(location.search);
+                //  const isSuccess = params.get('success');
+                //  emptycart();
+                //  navigate("/Msg");
+                //  if (isSuccess === 'true' ) {
+                //    
+                //  toast('Order is placed');
+                //   
+                //
+                //}
+              //}
               } 
               
               else {
