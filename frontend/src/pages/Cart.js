@@ -140,7 +140,7 @@ const Cart = () => {
    <Header/>
 
    <div className=' grid grid-row-2 lg:grid-cols-cart_main_grid gap-16 ml-5 mr-5 lg:ml-12 lg:mr-12 mt-10'>
-    <div className='bg-white  bg-transparent rounded-lg shadow-xl border-cart-boxes  font-bold h-[70vh] overflow-auto     '>
+    <div className='bg-white  bg-transparent rounded-lg shadow-xl border-cart-boxes  font-bold h-[70vh] overflow-auto scroll-smooth     '>
      <div  className=' flex justify-start ml-[10vw] m-3 text-3xl capitalize '>cart</div>
   <div className='  w-[90%] ml-7  '>
 

@@ -38,9 +38,9 @@ const Featured = () => {
 
 
   return (
-    <div className=' w-full bg-black h-fit lg:h-[50vh] md:h-[40vh]  grid lg:grid-cols-2 md:grid-cols-2 grid-rows-2  text-white  '>
+    <div className=' w-full bg-black h-fit lg:h-[50vh] md:h-[40vh]   grid lg:grid-cols-2 md:grid-cols-2 grid-rows-2  text-white  '>
         
-        <div className='  w-full h-[30vh] md:h-[40vh] lg:h-[50vh]    order-2 lg:order-1   justify-center items-center lg:text-end md:text-end   flex flex-col lg:gap-12 gap-5 text-center pb-4 '>
+        <div className='  w-full h-fit md:h-[40vh] lg:h-[50vh]    order-2 lg:order-1   justify-center items-center lg:text-end md:text-end   flex flex-col lg:gap-12 gap-5 text-center pb-4 '>
            <div className=' lg:text-5xl md:text-5xl text-center  text-3xl font-bold font-sans capitalize'>
              {product_name}
            </div>

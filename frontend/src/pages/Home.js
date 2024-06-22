@@ -7,7 +7,7 @@ import {Getproducts} from '../Utils/apiroutes'
 import axios from 'axios'
 const Home = () => {
  
-   
+  
 
 
   return (

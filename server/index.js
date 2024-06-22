@@ -5,6 +5,8 @@ const mongoose=require("mongoose")
 const stripe = require('stripe')(process.env.stipe_sk);
 const dotenv=require("dotenv")
 const Orders=require("./Models/Orders")
+const cron = require("node-cron");
+const axios = require("axios");
 const app = express();
 dotenv.config();
 const corsOptions = {
@@ -76,15 +78,27 @@ app.post('/webhook', express.raw({ type: 'application/json' }), async(request, r
   response.send();
 });
 
-
+app.get('/keep-alive', (req, res) => {
+  res.send('Server is awake');
+});
 // Replace with your MongoDB URI
 
 mongoose.connect(process.env.MONGO_URL)
-  .then(() => {console.log('MongoDB connected')
+.then(() => {
+  console.log('MongoDB connected');
   app.listen(5000, function () {
-    app.get('/', (req, res) => {
-      res.send('Server is up and running!');
-    });
+    console.log('Server is running on port 5000');
+  });
+
+  // Schedule the self-pinging task
+  cron.schedule('*/20 * * * *', () => {
+    axios.get(`${process.env.SelfUrl}/keep-alive`)
+      .then(response => {
+        console.log('Ping successful:', response.data);
+      })
+      .catch(error => {
+        console.log('Ping error:', error.message);
+      });
   });
   })
   .catch(err => console.log('MongoDB connection error:', err));

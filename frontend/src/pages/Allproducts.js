@@ -163,7 +163,7 @@ const Allproducts = () => {
 </button>
     </div>
     
-    <div className={`${toggle?'-left-0':'-left-full'} bg-white border-r w-[20] md:w-[100] xl:w-[16vw]  h-[100vh] md:h-[86vh] rounded-xl z-10 fixed xl:static    text-xl pl-5`} >
+    <div className={`${toggle?'-left-0':'-left-full'} ease-in-out duration-500 bg-white border-r w-[20] md:w-[100] xl:w-[16vw]  h-[100vh] md:h-[86vh] rounded-xl z-10 fixed xl:static    text-xl pl-5`} >
     <h2 className=' mt-2 text-xl'>Categories</h2>
          <div className=' w-full h-[30%]  overflow-auto  pr-9'>
 
@@ -236,7 +236,7 @@ const Allproducts = () => {
      </div>
 
 
-    <div className='   grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  m-9 md:mr-20  text-base z-0   gap-12 mt-5 pb-3 w-[100vw] h-[83vh] overflow-auto no-scrollbar'>
+    <div className='   grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  m-9 md:mr-20  text-base z-0   gap-12 mt-5 pb-3 w-[100vw] h-[83vh] overflow-auto no-scrollbar scroll-smooth'>
      { 
         fproducts.map((data,index)=>
         

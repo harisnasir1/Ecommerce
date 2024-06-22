@@ -21,7 +21,7 @@ const LatesetProduct = () => {
     <>
     <h2 className=' text-4xl font-bold mt-5  flex justify-start ml-44 '>New Arrival </h2>
     <div className=' flex justify-center'>
-    <div className='  grid lg:grid-cols-4 sm:grid-cols-1 md:grid-cols-2    w-[80%]   text-base   gap-12 mt-5 pb-3 h-[83vh] overflow-auto no-scrollbar'>
+    <div className='  grid lg:grid-cols-4 sm:grid-cols-1 md:grid-cols-2    w-[80%]   text-base   gap-12 mt-5 pb-3 h-[83vh] overflow-auto no-scrollbar scroll-smooth'>
      { 
         products.map((data,index)=>{
             return(        <ProductBox key={index} {...data}/>

@@ -48,6 +48,7 @@ export function CartContextProvider({children}){
    if(productCount<productqty)
     {
         setcardproducts(prev=>[...prev,productid]);
+        toast(`${res.data.allproducts.Product_name} has been added to your cart. `)
 
     }
  
@@ -59,7 +60,7 @@ export function CartContextProvider({children}){
 return(
     <>
         <cartcontext.Provider value={{cartpoducts,setcardproducts,addproducts,removeproducts,emptycart}} >{children}</cartcontext.Provider>
-    <ToastContainer draggable={true} position={'bottom-right'} autoClose={8000} theme='dark' pauseOnHover={false}/>
+    <ToastContainer draggable={true} position={'bottom-right'} autoClose={3000} theme='dark' pauseOnHover={false}/>
 </>
 
 )
