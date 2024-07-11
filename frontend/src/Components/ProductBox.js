@@ -8,7 +8,7 @@ const ProductBox = ({Product_name,product_price,Product_descripton ,Images,_id})
     <div className='  text-center flex flex-col gap-1'> 
         
         <Link to={`/Detail/${_id}`} className='bg-white  bg-transparent  rounded-lg shadow-xl  h-[240px] w-full text-xl   flex justify-center items-center'>
-        <img className='w-full h-full object-contain p-2 ' src={Images[0]}/>
+        <img className='w-full h-full object-contain p-2 ' src={Images&&Images[0]}/>
           
         </Link>
         <Link to={`/Detail/${_id}`} className=' = h-[6vh]'>{Product_name}</Link>

@@ -20,9 +20,9 @@ const Main = ({children}) => {
           }
       })
       return (
-        <div className=' bg-custom-gray min-h-screen flex'>
+        <div className=' bg-white min-h-screen flex'>
           <Nav/>
-          <div className='  text-black bg-white flex-grow mt-3 mr-4 mb-4 rounded-xl overflow-y-auto'> {children}</div>
+          <div className=' bg-  text-black bg-white flex-grow mt-3 mr-4 mb-4 rounded-xl overflow-y-auto'> {children}</div>
         </div>
       );
 };

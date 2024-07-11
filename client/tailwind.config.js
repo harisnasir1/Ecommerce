@@ -9,6 +9,7 @@ module.exports = {
         'custom-lighblue': '#8EBBFF',
         'custom-black': '#24293E',
         'custom-gray': '#2F3651',
+        'forange':'	#738276',
       },
       textColor: {
         'custom-lighblue': '#8EBBFF',

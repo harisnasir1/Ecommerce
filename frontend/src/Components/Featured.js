@@ -1,39 +1,25 @@
 import React,{useEffect,useState,useContext} from 'react'
 import Iphone from '../Utils/img/iphone.jpg'
 import {Link} from 'react-router-dom'
-import {Getproducts, get_product} from '../Utils/apiroutes'
+import {Getproducts, get_product,Getfeaturedproducts} from '../Utils/apiroutes'
 import {cartcontext} from './CartContext'
 import axios from 'axios'
 
-const Featured = () => {
+const Featured = ({
+  Product_name ,
+Images,
+product_descripton,
+_id
+}) => {
   const {addproducts}= useContext(cartcontext);
 
-  const [product_name,setproduct_name]=useState("");
-  const [images,setimages]=useState([])
-  const [des,setdes]=useState("");
-  const [fpid,setfpid]=useState("665e368c4a515b80633dbbb6");
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-       
-               //change here to change the featured product
-        const result = await axios.post(get_product,{
-            id:fpid
-        });
-        const re= JSON.parse( JSON.stringify(result));
-        setproduct_name(result.data.allproducts.Product_name); // Assuming result.data contains the product data
-        setimages(result.data.allproducts.Images);
-        setdes(result.data.allproducts.product_descripton)
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      }
-    };
 
-    fetchData();
-  }, []);
+  
+
+ 
 
   const Add_featured_product_to_cart=()=>{
-    addproducts(fpid);
+  _id&&  addproducts(_id);
   }
 
 
@@ -42,16 +28,16 @@ const Featured = () => {
         
         <div className='  w-full h-fit md:h-[40vh] lg:h-[50vh]    order-2 lg:order-1   justify-center items-center lg:text-end md:text-end   flex flex-col lg:gap-12 gap-5 text-center pb-4 '>
            <div className=' lg:text-5xl md:text-5xl text-center  text-3xl font-bold font-sans capitalize'>
-             {product_name}
+             {Product_name?Product_name:""}
            </div>
            <div className=' lg:text-left md:text-left text-center  w-[92%]  lg:w-[40vw]  lg:text-lg sm:text-sm  font-sans flex items-left lg:leading-7 sm:leading-3'>
-           {des}
+           {product_descripton?product_descripton:""}
 
            </div>
            <div className=' flex text-white gap-6  '>
             <div className=' flex '>   
                 
-                   <Link to={`Detail/${fpid}`} className=' p-2'>    
+                   <Link to={`Detail/${_id}`} className=' p-2'>    
                    <button className=' bg-transparent p-2 rounded-lg lg:text-md sm:text-sm font-sans font-bold cursor-pointer border-2 border-white'>View more</button></Link> 
                </div>
 
@@ -70,7 +56,7 @@ const Featured = () => {
            </div>
         </div>
         <div  className='  order-1 lg:order-2 md:h-[35vh]  lg:h-[50vh] h-[26vh] p-0   :w-full overflow-hidden flex justify-center items-end lg:items-center mt-9 lg:m-0 md:m-0  '>
-            <img className=' w-full h-full  object-contain'  src={images[0]}/>
+            <img className=' w-full h-full  object-contain'  src={Images?Images[0]:""}/>
         </div>
 
     </div>

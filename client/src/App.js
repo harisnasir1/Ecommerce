@@ -10,7 +10,7 @@ import Update from './Components/Update.js'
 import  Categorise from './Components/Categorise.js'
 import Properties from './Components/Properties.js'
 import Allorders from './Components/Allorders.js'
-
+import Home_customization from './Components/Home_customization.jsx'
 function App() {
   return (
     
@@ -26,6 +26,7 @@ function App() {
     <Route path='/Update/:id' element={<Update/>}/>
     <Route path='/Categorise' element={<Categorise/>}/>
     <Route path='/Properties' element={<Properties/>}/>
+    <Route path='/Home_customization' element={<Home_customization/>}/>
 
    
 

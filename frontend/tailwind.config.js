@@ -10,7 +10,8 @@ module.exports = {
         'custom-black': '#100C08',
         'custom-gray': '#1B1B1B',
         'custom-white':'#f2f2f2 ',
-        'cart-img-back':'#f0f0f0'
+        'cart-img-back':'#f0f0f0',
+        'forange':'	#738276',
       },
       gridTemplateColumns:{
         'cart_main_grid':'1.4fr .6fr',

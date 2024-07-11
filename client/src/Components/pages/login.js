@@ -53,7 +53,7 @@ const Login = () => {
      if(data.status===true)
      {
      localStorage.setItem("e-app-users",JSON.stringify(data.user));
-     navigate("/Dashboard");
+     navigate("/Home_customization");
      }
    }
 

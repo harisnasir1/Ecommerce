@@ -8,6 +8,8 @@ export const DelProduct= `${host}/api/products/del_products`
 export const Add_Product=`${host}/api/products/add_products`
 export const get_product=`${host}/api/products/get_product`
 export const Upload_Images=`${host}/api/products/Upload_Images`   
+export const Del_cloud_Images=`${host}/api/products/Del_cloud_Images`   
+export const All_products=`${host}/api/products/All_products`
 
 //catergories
 export const Add_Categories=`${host}/api/products/Add_Categories`
@@ -23,10 +25,13 @@ export const edit_Properties=`${host}/api/products/edit_Properties`
 export const Getall_properties=`${host}/api/products/Getall_properties`
 export const get_property=`${host}/api/products/get_property`
 
+
 //cart or orders
 export const getcarts=`${host}/api/Cart/getcarts`
 
+//Home customization
 
+export const HomeCustomization=`${host}/api/Custom/HomeCustomization`
 
 
 

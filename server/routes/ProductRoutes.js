@@ -1,6 +1,6 @@
 const {add_products,edit_products,del_products,showall_products,get_product,
     Upload_Images,Add_Categories,Getall_Categories,del_categories,get_category,edit_categories,
-    Add_Properties,del_Properties,edit_Properties,Getall_properties,get_property,get_sorted_product,All_products
+    Add_Properties,del_Properties,edit_Properties,Getall_properties,get_property,get_sorted_product,All_products,Del_cloud_Images
 }=require("../controllers/productController")
 const express = require("express");
 const router = express.Router();
@@ -15,6 +15,7 @@ router.get("/get_sorted_product",get_sorted_product);
 
 
 router.post("/Upload_Images",Upload_Images);
+router.post("/Del_cloud_Images",Del_cloud_Images);
 router.post("/Add_Categories",Add_Categories);
 router.get("/Getall_Categories",Getall_Categories);
 router.post("/del_categories",del_categories);

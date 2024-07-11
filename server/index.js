@@ -7,6 +7,7 @@ const dotenv=require("dotenv")
 const Orders=require("./Models/Orders")
 const cron = require("node-cron");
 const axios = require("axios");
+
 const app = express();
 dotenv.config();
 const corsOptions = {
@@ -18,6 +19,7 @@ app.use(cors(corsOptions));
 const userRoutes=require("./routes/userRoutes");
 const ProductRoutes=require("./routes/ProductRoutes");
 const  cartRoutes=require("./routes/CartRoutes")
+const  Home_Customization=require("./routes/Home_route");
 
 function parseJson(req, res, next) {
   if (req.path.startsWith('/api')) {
@@ -32,6 +34,7 @@ app.use("/api/auth",userRoutes);
 app.use("/api/products",ProductRoutes);
 //app.use("api/order",orderroutes);
 app.use("/api/Cart",cartRoutes);
+app.use("/api/Custom",Home_Customization);
 
 //4242 4242 4242 4242
 

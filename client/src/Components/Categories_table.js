@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { TableVirtuoso } from 'react-virtuoso';
 import axios from 'axios';
-import {  DelProduct,Getall_Categories,del_categories} from '../Utils/ApiRoutes';
+import { Getall_Categories, del_categories } from '../Utils/ApiRoutes';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -18,7 +18,6 @@ const columns = [
     label: 'Category name',
     dataKey: 'Catergoy_name',
   },
-  
   {
     label: 'Parent Category ',
     dataKey: 'parent.Catergoy_name',
@@ -68,7 +67,7 @@ function fixedHeaderContent() {
   );
 }
 
-function rowContent(index, row, del, navigate,update) {
+function rowContent(index, row, dele, navigate, update) {
   return (
     <React.Fragment>
       {columns.map((column) => (
@@ -79,14 +78,16 @@ function rowContent(index, row, del, navigate,update) {
           {column.dataKey === 'delete' ? (
             <button
               className="bg-red-500 text-white px-4 py-2 rounded ml-9"
-              onClick={() => del(row._id)}
+              onClick={() => {dele(row._id,Event)
+                toast("del");
+              }}
             >
               Delete
             </button>
           ) : column.dataKey === 'update' ? (
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded"
-              onClick={() =>update(row._id)}
+              onClick={() => update(row._id)}
             >
               Update
             </button>
@@ -101,43 +102,38 @@ function rowContent(index, row, del, navigate,update) {
   );
 }
 
-export default function ReactVirtualizedTable({Allcat,Catname,getcategory}) {
+export default function ReactVirtualizedTable({ Allcat, Catname, getcategory ,del}) {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
- 
-  async function getdata()
-  {
-    axios.get(Getall_Categories)
-    .then((res) => {
-      const products = res.data.result.map(product => ({
+
+  const getdata = async () => {
+    try {
+      const res = await axios.get(Getall_Categories);
+      const products = res.data.result.map((product) => ({
         ...product,
-        qty: product.qty || 0 // Ensure qty is present
+        qty: product.qty || 0, // Ensure qty is present
       }));
       setData(products);
-    })
-    .catch((e) => console.log("error is ", { e }));
-  }
-  async function update(id)
-  {
+    } catch (e) {
+      console.log("error is ", { e });
+    }
+  };
+
+  const update = (id) => {
     getcategory(id);
-  }
+  };
 
   useEffect(() => {
-   getdata();
-  },[Allcat,Catname]);
+    getdata();
+  }, [Allcat, Catname]);
 
-  const del = (id) => {
-    console.log(id);
-    axios.post(del_categories, {
-      id:id,
-    })
-    .then((res) => {
-      toast("Category is deleted");
-      getdata();
-    })
-    .catch((e) => {
-      console.log("error deleting product", { e });
-    });
+  const showtoast=()=>{
+    toast("del")
+  }
+  const dele = async (id,e) => {
+   
+        await del(id);
+    getdata();
   };
 
   return (
@@ -147,10 +143,9 @@ export default function ReactVirtualizedTable({Allcat,Catname,getcategory}) {
           data={data}
           components={VirtuosoTableComponents}
           fixedHeaderContent={fixedHeaderContent}
-          itemContent={(index, row) => rowContent(index, row, del, navigate,update)}
+          itemContent={(index, row) => rowContent(index, row, dele, navigate, update)}
         />
       </Paper>
-      <ToastContainer draggable={true} position={'bottom-right'} autoClose={900} theme='dark' pauseOnHover={false} />
     </>
   );
 }

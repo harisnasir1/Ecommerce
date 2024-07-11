@@ -2,15 +2,16 @@
 export const host=`${process.env.REACT_APP_Server_URL}`;
 export const SignupRoute=`${host}/api/auth/adminSignup`;
 export const LoginRoute =`${host}/api/auth/adminLogin`;
+
 //products
-export const Getproducts=`${host}/api/products/showall_products`
-export const UpdateProduct= `${host}/api/products/edit_products`
-export const DelProduct= `${host}/api/products/del_products`
-export const Add_Product=`${host}/api/products/add_products`
-export const get_product=`${host}/api/products/get_product`
-export const Upload_Images=`${host}/api/products/Upload_Images`   
-export const get_sorted_product=`${host}/api/products/get_sorted_product`
-export const All_products=`${host}/api/products/All_products`
+export const Getproducts=`${host}/api/products/showall_products`;
+export const UpdateProduct= `${host}/api/products/edit_products`;
+export const DelProduct= `${host}/api/products/del_products`;
+export const Add_Product=`${host}/api/products/add_products`;
+export const get_product=`${host}/api/products/get_product`;
+export const Upload_Images=`${host}/api/products/Upload_Images`;   
+export const get_sorted_product=`${host}/api/products/get_sorted_product`;
+export const All_products=`${host}/api/products/All_products`;
 
 //catergories
 export const Add_Categories=`${host}/api/products/Add_Categories`
@@ -31,8 +32,5 @@ export const getcartproduct=`${host}/api/Cart/getcartproduct`
 export const getcartProperties=`${host}/api/Cart/getcartProperties`
 export const addCart=`${host}/api/Cart/addCart`
 
-
-
-
-
-
+//Customization
+export const Getfeaturedproducts=`${host}/api/Custom/Getfeaturedproducts`
