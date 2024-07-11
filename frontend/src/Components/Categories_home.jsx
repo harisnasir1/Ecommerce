@@ -29,10 +29,10 @@ const Categories_home = () => {
 
   return (
     <div className="bg-blck mt-5 h-[430px] w-[100vw] overflow-hidden">
-      <div className="text-4xl font-bold mt-5 flex justify-start ml-44 capitalize ">
+      <div className="text-3xl md:text-4xl font-bold mt-5 flex justify-start ml-10 md:ml-44 capitalize ">
         Categories
       </div>
-      <div className="w-full flex justify-center items-center h-full p-2">
+      <div className=" w-[98%] md:w-full flex justify-center items-center h-full p-2">
         <div className="flex w-[5%] h-full items-center justify-end">
           <button onClick={scroll_left}>
             <svg
@@ -41,7 +41,7 @@ const Categories_home = () => {
               viewBox="0 0 24 24"
               strokeWidth="2.5"
               stroke="currentColor"
-              className="size-10"
+              className="size-6 md:size-10"
             >
               <path
                 strokeLinecap="round"
@@ -55,9 +55,10 @@ const Categories_home = () => {
           id="scroller"
           className="w-[90%] flex justify-start h-[100%] bg-blck overflow-x-auto text-base gap-5 mt-5 no-scrollbar   scroll-smooth"
         >
-          {categories.map((data, index) => data.Img &&!data.Parent&& (
-            <CategoryBox key={index} {...data}  />
-          ))}
+          {categories.map(
+            (data, index) =>
+              data.Img && !data.Parent && <CategoryBox key={index} {...data} />
+          )}
         </div>
         <div className="flex w-[5%] h-full justify-start">
           <button onClick={scroll_right}>
@@ -67,7 +68,7 @@ const Categories_home = () => {
               viewBox="0 0 24 24"
               strokeWidth="2.5"
               stroke="currentColor"
-              className="size-10"
+              className="size-6 md:size-10"
             >
               <path
                 strokeLinecap="round"

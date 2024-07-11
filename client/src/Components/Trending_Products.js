@@ -71,7 +71,7 @@ const Trending_Products = (props) => {
     }
     return (
       <div className="bg-blck mt-5 h-[530px] w-[86vw] overflow-hidden flex flex-col">
-        <div className="text-4xl font-bold mt-5 flex justify-start ml-44 capitalize ">
+        <div className="text-4xl  font-bold mt-5 flex justify-start ml-44 capitalize ">
           Trending Products
         </div>
     {    addedpro.length>0?
