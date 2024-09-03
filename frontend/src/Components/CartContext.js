@@ -8,9 +8,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
  
 export function CartContextProvider({children}){
 
-    const [cartpoducts,setcardproducts]=useState(
-        
-   []);
+    const [cartpoducts,setcardproducts]=useState([]);
 
  useEffect(()=>{
   cartpoducts?.length>0&& localStorage.setItem('Cart',JSON.stringify(cartpoducts))

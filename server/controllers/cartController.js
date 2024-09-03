@@ -44,12 +44,12 @@ module.exports.getcartProperties=async(req,res,next)=>{
 module.exports.addCart=async(req,res,next)=>{
     try {
         const { select_cartpros, cartpoducts, billingdata } = req.body;
-
+        
         // Fetch products from the database
         ////console.log('Fetching products...');
         const result = await products.find({ _id: { $in: cartpoducts } }).populate('property');
        // //console.log('Products fetched:', result);
-
+      // console.log(typeof(billingdata.userid))
         let line_items = [];
         let tprice=0;
         result.map((product) => {
@@ -87,9 +87,12 @@ module.exports.addCart=async(req,res,next)=>{
             street_address: billingdata.address,
             paid: false,
             tprice,
+            phoneno:billingdata.phoneno,
+            Cust_id:billingdata.userid,
+            Estimated_date:null,
+            divstatus:"pending"
         });
         ////console.log('Order created:', orderinfo);
-
         // Create the Stripe checkout session
         ////console.log('Creating Stripe session...');
         const session = await stripe.checkout.sessions.create({
@@ -119,10 +122,55 @@ module.exports.addCart=async(req,res,next)=>{
 }
 module.exports.getcarts=async(req,res,next)=>{
     try{
-      const data =await Orders.find().sort({createdAt: -1 });
+        const {id}=req.body;
+       
+      const data =await Orders.find({Cust_id:id}).sort({createdAt: -1 });
+      //console.log(data);
       res.json({status:true,data:data});
     }
     catch(e)
 {
 
 }}
+module.exports.getallcarts=async(req,res,next)=>{
+    try{
+      
+       
+      const data =await Orders.find().sort({createdAt: -1 });
+      //console.log(data);
+      res.json({status:true,data:data});
+    }
+    catch(e)
+{
+
+}}
+module.exports.getImg=async(req,res,next)=>{
+    const {name}=req.body
+    //console.log(name);
+    try{
+        const result = await products.findOne({ Product_name: name }).exec();
+        console.log(result.Images[0]); // Log the result for debugging
+        if (result.Images[0]) {
+            // If a product is found, send it as the response
+            res.status(200).json(result.Images[0]);
+          } else {
+            // If no product is found, send a 404 response
+            res.status(404).json({ message: 'Product not found' });
+          }
+    }
+    catch (error) {
+        // Handle any errors that occur during the query
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred', error });
+      }
+   
+}
+module.exports.update_satus=async(req,res,next)=>{
+    const {id,status,date}=req.body;
+    const result=await Orders.findOneAndUpdate({_id:id},{$set:{
+        divstatus:status,
+        Estimated_date:date,
+        }});
+
+    res.json({satus:"ok"})
+}

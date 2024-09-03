@@ -16,34 +16,11 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-const userRoutes=require("./routes/userRoutes");
-const ProductRoutes=require("./routes/ProductRoutes");
-const  cartRoutes=require("./routes/CartRoutes")
-const  Home_Customization=require("./routes/Home_route");
-
-function parseJson(req, res, next) {
-  if (req.path.startsWith('/api')) {
-    express.json()(req, res, next);
-  } else {
-    next();
-  }
-}
-
-app.use(parseJson);
-app.use("/api/auth",userRoutes);
-app.use("/api/products",ProductRoutes);
-//app.use("api/order",orderroutes);
-app.use("/api/Cart",cartRoutes);
-app.use("/api/Custom",Home_Customization);
-
-//4242 4242 4242 4242
-
-const endpointSecret = process.env.EndpointSecret;
 
 app.post('/webhook', express.raw({ type: 'application/json' }), async(request, response) => {
- // console.log("webhook");
+  console.log("webhook");
   const sig = request.headers['stripe-signature'];
-
+  
   let event;
 
   try {
@@ -80,6 +57,30 @@ app.post('/webhook', express.raw({ type: 'application/json' }), async(request, r
   // Return a 200 response to acknowledge receipt of the event
   response.send();
 });
+
+
+
+
+
+const userRoutes=require("./routes/userRoutes");
+const ProductRoutes=require("./routes/ProductRoutes");
+const  cartRoutes=require("./routes/CartRoutes")
+const  Home_Customization=require("./routes/Home_route");
+
+
+
+app.use(express.json());
+app.use("/api/auth",userRoutes);
+app.use("/api/products",ProductRoutes);
+//app.use("api/order",orderroutes);
+app.use("/api/Cart",cartRoutes);
+app.use("/api/Custom",Home_Customization);
+
+//4242 4242 4242 4242
+
+const endpointSecret = process.env.EndpointSecret;
+
+
 
 app.get('/keep-alive', (req, res) => {
   res.send('Server is awake');

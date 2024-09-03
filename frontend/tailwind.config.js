@@ -5,6 +5,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+
+      backgroundImage: {
+       login_signup:"url('public/ls.jpg')",
+      },
+
+
       backgroundColor: {
         'custom-lighblue': '#8EBBFF',
         'custom-black': '#100C08',
@@ -15,6 +21,7 @@ module.exports = {
       },
       gridTemplateColumns:{
         'cart_main_grid':'1.4fr .6fr',
+        'order_main_grid':'1.8fr .2fr',
         'allproduct':'.1fr 1fr',
         'allproduct_re':'0fr 1fr',
         'detail_main':'0.9fr 1fr',

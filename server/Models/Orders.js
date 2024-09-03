@@ -9,6 +9,17 @@ const Orders= new mongoose.Schema({
     street_address:String,
     paid:Boolean,
     tprice:Number,
+    phoneno:Number,
+    Cust_id:{
+        type:mongoose.Types.ObjectId,
+        ref:'admin'
+    },
+    Estimated_date:{
+        type:Date,
+    },
+    divstatus:{
+        type:String
+    }
 },{
     timestamps:true,
 })

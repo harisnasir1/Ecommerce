@@ -28,7 +28,7 @@ const Mid_Banner = ({Product_name ,
                {Product_name?Product_name:""}
              </div>
              <div className=' lg:text-left md:text-left text-center  w-[92%]  lg:w-[40vw]  lg:text-lg sm:text-sm  font-sans flex items-left lg:leading-7 sm:leading-3'>
-             {product_descripton?product_descripton:""}
+            
   
              </div>
              <div className=' flex text-white gap-6  '>

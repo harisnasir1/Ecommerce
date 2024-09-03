@@ -13,12 +13,7 @@ const Main = ({children}) => {
         const initialValue = JSON.parse(saved);
         return initialValue || "";
       });
-      useEffect(()=>{
-        if(!localStorage.getItem("e-app-users"))
-          {
-          navigate("/");
-          }
-      })
+     
       return (
         <div className=' bg-white min-h-screen flex'>
           <Nav/>

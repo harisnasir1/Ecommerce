@@ -28,7 +28,7 @@ module.exports.login_admin=async(req,res,next)=>{
 }
 module.exports.signup_admin=async(req,res,next)=>{
     try{
-        console.log("i am here");
+       
         
         const{UserName, Email,Password,}=req.body;
         const usernamecheck=await admin.findOne({UserName});

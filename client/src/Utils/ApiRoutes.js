@@ -28,6 +28,9 @@ export const get_property=`${host}/api/products/get_property`
 
 //cart or orders
 export const getcarts=`${host}/api/Cart/getcarts`
+export const getallcarts=`${host}/api/Cart/getallcarts`
+export const update_satus=`${host}/api/Cart/update_satus`
+
 
 //Home customization
 

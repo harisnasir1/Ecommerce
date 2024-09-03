@@ -31,6 +31,10 @@ export const get_property=`${host}/api/products/get_property`
 export const getcartproduct=`${host}/api/Cart/getcartproduct`
 export const getcartProperties=`${host}/api/Cart/getcartProperties`
 export const addCart=`${host}/api/Cart/addCart`
+export const getcarts=`${host}/api/Cart/getcarts`
+export const getImg=`${host}/api/Cart/getImg`
+
+
 
 //Customization
 export const Getfeaturedproducts=`${host}/api/Custom/Getfeaturedproducts`

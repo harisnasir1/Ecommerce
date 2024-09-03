@@ -5,8 +5,9 @@ import {getcartproduct,addCart} from '../Utils/apiroutes'
 import axios from 'axios'
 import {useNavigate,useLocation} from 'react-router-dom'
 import { loadStripe } from '@stripe/stripe-js';
-import { toast } from 'react-toastify'
-
+import { toast,ToastContainer } from 'react-toastify'
+import Login from './Login'
+import Signup from './Signup'
 
 const Cart = () => {
     const location = useLocation();
@@ -20,10 +21,14 @@ const Cart = () => {
    const [address,setaddress]=useState();
    const [city,setcity]=useState();
    const [country,setcountry]=useState();
+   const [phoneno,setphoneno]=useState();
    const [selected_para,seselected_para]=useState({});
    const [select_cartpros,setselect_cartpros]=useState({});
    const [signal,setsignal]=useState(false);
-   useEffect(()=>{
+   const [openlogin,setopenlogin]=useState(false);
+   const [openSignup,setopensingup]=useState(false);
+   const [userid,setuserid]=useState();
+     useEffect(()=>{
      axios.post(getcartproduct,{
         id:cartpoducts
      })
@@ -50,10 +55,10 @@ const Cart = () => {
      .catch((e)=>{
         console.log("error on getting cart products :",{e})
      })
-   },[cartpoducts])
+     },[cartpoducts])
    
-   let totall=0;
-   for(const productId of cartpoducts)
+     let totall=0;
+     for(const productId of cartpoducts)
       { 
         const price = products?.find(p => p._id === productId)?.product_price||0  ;
        
@@ -79,12 +84,27 @@ const Cart = () => {
       //console.log("i want to see this :", select_cartpros)
       },[select_cartpros])
 
-     
+     useEffect(()=>{
+        const foo=async()=>{
+          if(localStorage.getItem('hmmprime'))
+            {
+              const user = await JSON.parse(localStorage.getItem('hmmprime'));
+              console.log(user);
+              setuserid(user._id)
+            }
+        }
+        foo();
+     },[openSignup,openlogin])
   
-
-
-      const handelsubmit=(e)=>{
+      const handelsubmit=async(e)=>{
         e.preventDefault();
+        
+       if(!localStorage.getItem('hmmprime'))
+       {
+        setopenlogin(true)
+       }
+       else{
+       
         console.log("see this");
         console.log(select_cartpros);
         console.log(cartpoducts);
@@ -94,52 +114,55 @@ const Cart = () => {
             city,
             country,
             address,
-            postalcode
+            postalcode,
+            phoneno,
+            userid
         }
         axios.post(addCart,{
             select_cartpros,
             cartpoducts,
             billingdata,
         })
-        .then(async (res)=>{
-            console.log("line items ",res)
-            if (res.status) {
-                console.log()
-                // Redirect to Stripe Checkout
-                const stripe = await stripePromise;
-                const { error } = await stripe.redirectToCheckout({
-                  sessionId: res.data.sessionId,
-                });
-        
-                if (error) {
-                  console.error('Stripe error:', error);
-                }
-                //else{
-                //  const params = new URLSearchParams(location.search);
-                //  const isSuccess = params.get('success');
-                //  emptycart();
-                //  navigate("/Msg");
-                //  if (isSuccess === 'true' ) {
-                //    
-                //  toast('Order is placed');
-                //   
-                //
-                //}
-              //}
-              } 
-              
-              else {
-                console.error('Backend error:', res.error);
-              }
-        })
-        
-
+       .then(async (res)=>{
+           console.log("line items ",res)
+           if (res.status) {
+               console.log()
+               // Redirect to Stripe Checkout
+               const stripe = await stripePromise;
+               const { error } = await stripe.redirectToCheckout({
+                 sessionId: res.data.sessionId,
+               });
+       
+               if (error) {
+                 console.error('Stripe error:', error);
+               }
+               //else{
+               //  const params = new URLSearchParams(location.search);
+               //  const isSuccess = params.get('success');
+               //  emptycart();
+               //  navigate("/Msg");
+               //  if (isSuccess === 'true' ) {
+               //    
+               //  toast('Order is placed');
+               //   
+               //
+               //}
+             //}
+             } 
+             
+             else {
+               console.error('Backend error:', res.error);
+             }
+       })
+       }
       }
+
   return (
     <div className=' bg-custom-white h-[100%] lg:h-[100vh] overflow-hidden'>
-   <Header/>
 
-   <div className=' grid grid-row-2 lg:grid-cols-cart_main_grid gap-16 ml-5 mr-5 lg:ml-12 lg:mr-12 mt-10'>
+     <Header/>
+
+   <div className='  grid grid-row-2 lg:grid-cols-cart_main_grid gap-16 ml-5 mr-5 lg:ml-12 lg:mr-12 mt-10'>
     <div className='bg-white  bg-transparent rounded-lg shadow-xl border-cart-boxes  font-bold h-[70vh] overflow-auto scroll-smooth     '>
      <div  className=' flex justify-start ml-[10vw] m-3 text-3xl capitalize '>cart</div>
   <div className='  w-[90%] ml-7  '>
@@ -226,7 +249,7 @@ const Cart = () => {
 
 
 
-    <div className='bg-white h-[70vh]  bg-transparent p-2 rounded-lg  shadow-xl  border-cart-boxes font-bold   text-3xl   '>
+    <div className='bg-white h-[74vh] md:h-[70vh]  bg-transparent p-2 rounded-lg  shadow-xl  border-cart-boxes font-bold   text-3xl   '>
     <div className=' mt-20 text-center'> Order Information</div>
      
      <form className=' flex flex-col items-center gap-8 h-full  bg-contain pb-8' onSubmit={handelsubmit}>
@@ -248,6 +271,9 @@ const Cart = () => {
     <input type='text' placeholder='street address' name='street address' className=' text-black  text-lg text-center leading-9  rounded-lg  w-[90%]
         border-cart_input_boxes border-gray  outline-none shadow-lg' value={address} onChange={(e)=>setaddress(e.target.value)} required/>
             
+            <input type='text' placeholder='phone number' name='phone' className=' text-black  text-lg text-center leading-9  rounded-lg  w-[90%]
+        border-cart_input_boxes border-gray  outline-none shadow-lg' value={phoneno} onChange={(e)=>setphoneno(e.target.value)}  required/>
+         
             <input type='text' placeholder='country' name='country' className=' text-black  text-lg text-center leading-9  rounded-lg  w-[90%]
         border-cart_input_boxes border-gray  outline-none shadow-lg' value={country} onChange={(e)=>setcountry(e.target.value)}  required/>
 
@@ -259,6 +285,25 @@ const Cart = () => {
     </div>
 
    </div>
+
+    {
+      openlogin && (
+        <div className=' fixed top-0 flex justify-center w-[100vw] h-[100vh]'>
+          
+         <Login openlogin={openlogin} setopenlogin={setopenlogin} handelsubmit={handelsubmit} setopensingup={setopensingup} openSignup={openSignup} />
+
+      </div>
+      )
+    }
+    {
+      openSignup && (
+        <div className=' fixed top-0 flex justify-center w-[100vw] h-[100vh]'>
+          
+         <Signup openlogin={openlogin} setopenlogin={setopenlogin} Setopensingup={setopensingup} openSignup={openSignup} />
+      </div>
+      )
+    }
+   <ToastContainer draggable={true} position={'bottom-right'} autoClose={8000} theme='dark' pauseOnHover={false}/>
 
     </div>
   )

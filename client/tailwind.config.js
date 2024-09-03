@@ -22,7 +22,7 @@ module.exports = {
         'custom-gray': '#2F3651',
       },
       gridTemplateColumns:{
-        'ordertableproduct':'1fr .6fr .9fr 1fr'
+        'ordertableproduct':'1fr .6fr .9fr 0.5fr'
       }
     },
   },

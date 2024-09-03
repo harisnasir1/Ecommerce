@@ -1,12 +1,16 @@
 const express = require("express");
 const bodyParser = require('body-parser');
-const {getcartproduct,getcartProperties,addCart,getcarts}=require('../controllers/cartController')
+const {getcartproduct,getcartProperties,addCart,getcarts,getImg,getallcarts,update_satus}=require('../controllers/cartController')
 const router = express.Router();
 
 router.post("/getcartproduct",getcartproduct);
 router.post("/getcartProperties",getcartProperties);
 router.post("/addCart",addCart);
-router.get("/getcarts",getcarts);
+router.post("/getcarts",getcarts);
+router.post("/getImg",getImg);
+router.post("/update_satus",update_satus);
+
+router.get("/getallcarts",getallcarts);
 
 
 
