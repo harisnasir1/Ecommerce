@@ -20,7 +20,8 @@ app.use(cors(corsOptions));
 app.post('/webhook', express.raw({ type: 'application/json' }), async(request, response) => {
   console.log("webhook");
   const sig = request.headers['stripe-signature'];
-  
+  const endpointSecret = process.env.EndpointSecret;
+
   let event;
 
   try {
@@ -78,7 +79,6 @@ app.use("/api/Custom",Home_Customization);
 
 //4242 4242 4242 4242
 
-const endpointSecret = process.env.EndpointSecret;
 
 
 
