@@ -20,9 +20,14 @@ app.use(cors(corsOptions));
 app.post('/webhook', express.raw({ type: 'application/json' }), async(request, response) => {
   console.log("webhook");
   const sig = request.headers['stripe-signature'];
-  const endpointSecret = process.env.EndpointSecret;
+  console.log("signature is =", sig);
 
+  const endpointSecret = process.env.EndpointSecret;
+console.log("endpointSecret =" , endpointSecret)
   let event;
+
+  const rawBody = request.body.toString('utf8');
+    console.log("Received raw body:", rawBody);
 
   try {
     event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
