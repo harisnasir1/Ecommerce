@@ -7,7 +7,7 @@ const dotenv=require("dotenv")
 const Orders=require("./Models/Orders")
 const cron = require("node-cron");
 const axios = require("axios");
-
+const bodyParser = require('body-parser');
 const app = express();
 dotenv.config();
 const corsOptions = {
@@ -17,7 +17,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-app.post('/webhook', express.raw({ type: 'application/json' }), async(request, response) => {
+app.post('/webhook', bodyParser.raw({ type: 'application/json' }), async(request, response) => {
   console.log("webhook");
   const sig = request.headers['stripe-signature'];
   console.log("signature is =", sig);
